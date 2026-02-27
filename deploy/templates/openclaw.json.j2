@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.26",
+    "agent": "{{ agent_name }}",
+    "deployed_by": "deploy-agent v1.0",
+    "deployed_at": "{{ deploy_time }}"
+  },
+  "env": {
+    "DASHSCOPE_API_KEY": "{{ dashscope_key }}"
+  },
+  "gateway": {
+    "port": {{ port }},
+    "host": "127.0.0.1"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "botToken": "{{ bot_token }}",
+      "webhookUrl": ""
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "{{ default_model }}"
+      },
+      "features": {
+        "search": true,
+        "browser": true,
+        "programming": true,
+        "summarize": true
+      }
+    }
+  },
+  "workspace": {
+    "path": "{{ workspace_path }}"
+  }
+}
