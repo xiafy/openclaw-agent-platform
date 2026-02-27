@@ -34,8 +34,7 @@ cat docs/QUICKSTART-L2.md
 ```
 docs/
 ├── 📘 架构与规划
-│   ├── spec.md                      # ⭐ 架构主文档 (v9)
-│   └── life-agent-plan.md           # 📜 原始计划 (历史参考)
+│   └── spec.md                      # ⭐ 架构主文档 (v9)
 │
 ├── 📗 部署 SOP (3 种模式)
 │   ├── sop-minimal-setup.md         # ⭐ 极简配置 (10 min)
@@ -44,11 +43,17 @@ docs/
 │
 ├── 📙 复盘与总结
 │   ├── SUMMARY-shuaishuai-l2.md     # ⭐ 最终总结
-│   └── retro-shuaishuai-l2.md       # 详细复盘报告
+│   ├── retro-shuaishuai-l2.md       # 详细复盘
+│   └── DOCUMENT-OPTIMIZATION-SUMMARY.md  # 优化总结
 │
-└── 📕 索引与导航
-    ├── README-deployment.md         # ⭐ 文档索引
-    └── DOCUMENTATION-GUIDE.md       # ⭐ 文档维护指南
+├── 📕 索引与导航
+│   ├── README-deployment.md         # ⭐ 文档索引
+│   ├── DOCUMENTATION-GUIDE.md       # ⭐ 维护指南
+│   └── DOCUMENT-REVIEW-REPORT.md    # ⭐ 审查报告
+│
+└── 📁 archive/ (归档)
+    ├── life-agent-plan.md           # 📜 shuaishuai 原始计划
+    └── plan-sage.md                 # 📜 sage 计划 (过时)
 ```
 
 ---
@@ -80,7 +85,8 @@ docs/
 
 ### 完整文档体系
 
-- 10 篇文档，~55K 字
+- 9 篇核心文档 + 2 篇归档
+- ~73K 字
 - 场景化导航
 - 踩坑记录 + 最佳实践
 

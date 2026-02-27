@@ -12,21 +12,26 @@
 ```
 docs/
 ├── 📘 架构与规划
-│   ├── spec.md                      # 架构方案 (主文档)
-│   └── life-agent-plan.md           # 原始计划 (历史参考)
+│   └── spec.md                      # ⭐ 架构主文档 (v9)
 │
 ├── 📗 部署 SOP (3 种模式)
 │   ├── sop-minimal-setup.md         # ⭐ 极简配置 (10 min)
 │   ├── QUICKSTART-L2.md             # ⭐ 快速部署 (90 min)
-│   └── sop-l2-agent-deployment.md   # 完整 SOP (90 min + 复盘)
+│   └── sop-l2-agent-deployment.md   # 完整 SOP (90 min+)
 │
-├── 📙 复盘与总结
+├── 📙 复盘与总结 (3 篇)
 │   ├── SUMMARY-shuaishuai-l2.md     # ⭐ 最终总结
-│   └── retro-shuaishuai-l2.md       # 详细复盘报告
+│   ├── retro-shuaishuai-l2.md       # 详细复盘
+│   └── DOCUMENT-OPTIMIZATION-SUMMARY.md  # 优化总结
 │
-└── 📕 索引与导航
-    ├── README-deployment.md         # 本文件
-    └── (其他索引)
+├── 📕 索引与导航 (3 篇)
+│   ├── README-deployment.md         # ⭐ 文档索引
+│   ├── DOCUMENTATION-GUIDE.md       # ⭐ 维护指南
+│   └── DOCUMENT-REVIEW-REPORT.md    # ⭐ 审查报告
+│
+└── 📁 archive/ (归档)
+    ├── life-agent-plan.md           # 📜 shuaishuai 原始计划
+    └── plan-sage.md                 # 📜 sage 计划
 ```
 
 ---
@@ -134,18 +139,30 @@ docs/
 
 ## 📁 完整文档清单
 
+## 📊 完整文档清单
+
+### 核心文档 (9 篇)
+
 | 文档 | 路径 | 字数 | 用途 | 状态 |
 |------|------|------|------|------|
-| **spec.md** | `spec.md` | ~8K | 架构主文档 | ✅ v8 |
-| **sop-minimal-setup.md** | `sop-minimal-setup.md` | ~4K | ⭐ 极简配置 SOP | ✅ v1.0 |
-| **QUICKSTART-L2.md** | `QUICKSTART-L2.md` | ~4K | ⭐ 快速部署指南 | ✅ v1.0 |
-| **sop-l2-agent-deployment.md** | `sop-l2-agent-deployment.md` | ~8K | 完整部署 SOP | ✅ v1.0 |
-| **SUMMARY-shuaishuai-l2.md** | `SUMMARY-shuaishuai-l2.md` | ~5K | ⭐ 最终总结 | ✅ v1.0 |
-| **retro-shuaishuai-l2.md** | `retro-shuaishuai-l2.md` | ~9K | 详细复盘 | ✅ v1.0 |
-| **life-agent-plan.md** | `life-agent-plan.md` | ~6K | 原始计划 | 📜 参考 |
-| **README-deployment.md** | `README-deployment.md` | - | 本索引 | ✅ v2.0 |
+| **spec.md** | `spec.md` | ~7K | 架构主文档 | ✅ v9 |
+| **sop-minimal-setup.md** | `sop-minimal-setup.md` | ~5K | ⭐ 极简配置 SOP | ✅ v1.0 |
+| **QUICKSTART-L2.md** | `QUICKSTART-L2.md` | ~8K | ⭐ 快速部署指南 | ✅ v2.0 |
+| **sop-l2-agent-deployment.md** | `sop-l2-agent-deployment.md` | ~9K | 完整部署 SOP | ✅ v1.0 |
+| **SUMMARY-shuaishuai-l2.md** | `SUMMARY-shuaishuai-l2.md` | ~6K | ⭐ 最终总结 | ✅ v1.1 |
+| **retro-shuaishuai-l2.md** | `retro-shuaishuai-l2.md` | ~11K | 详细复盘 | ✅ v1.0 |
+| **README-deployment.md** | `README-deployment.md` | ~7K | ⭐ 文档索引 | ✅ v2.0 |
+| **DOCUMENTATION-GUIDE.md** | `DOCUMENTATION-GUIDE.md` | ~5K | ⭐ 维护指南 | ✅ v1.0 |
+| **DOCUMENT-OPTIMIZATION-SUMMARY.md** | `DOCUMENT-OPTIMIZATION-SUMMARY.md` | ~7K | 优化总结 | ✅ v1.0 |
 
-**总计**: ~44K 字
+### 归档文档 (2 篇)
+
+| 文档 | 路径 | 字数 | 用途 | 状态 |
+|------|------|------|------|------|
+| **life-agent-plan.md** | `archive/life-agent-plan.md` | ~8K | shuaishuai 原始计划 | 📜 历史 |
+| **plan-sage.md** | `archive/plan-sage.md` | ~2K | sage 计划 | 📜 过时 |
+
+**总计**: 11 篇文档，~73K 字 (核心 9 篇 ~65K)
 
 ---
 
