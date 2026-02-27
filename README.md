@@ -9,21 +9,36 @@
 
 ## 🎯 快速开始
 
-### 极简部署 (10 min) ⭐
+### 🚀 自动化部署 (推荐) ⭐
 
-已有 macOS 用户？10 分钟快速启动：
-
+**L1 Profile 模式 (5 min)**:
 ```bash
-# 阅读并执行极简 SOP
+./deploy/bin/deploy-agent --mode l1 --name researcher --role "商业研究员"
+```
+
+**L2 独立用户模式 (30 min)**:
+```bash
+./deploy/bin/deploy-agent --mode l2 --username wifey --role "夫人助理"
+```
+
+**预演模式**:
+```bash
+./deploy/bin/deploy-agent --mode l2 --username test --dry-run
+```
+
+**查看更多**: [部署使用指南](docs/deploy-automation-guide.md)
+
+---
+
+### 📖 手动部署 (参考)
+
+**极简部署 (10 min)** - 已有 macOS 用户：
+```bash
 cat docs/sop-minimal-setup.md
 ```
 
-### 完整部署 (90 min)
-
-从零开始创建独立用户：
-
+**完整部署 (90 min)** - 从零开始：
 ```bash
-# 阅读完整部署指南
 cat docs/QUICKSTART-L2.md
 ```
 
