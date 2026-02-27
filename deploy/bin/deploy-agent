@@ -1,0 +1,210 @@
+#!/usr/bin/env python3
+"""
+OpenClaw Agent 自动化部署工具
+支持 L1 (Profile) 和 L2 (独立用户) 两种模式
+
+用法:
+    # L1 部署 (交互式)
+    ./deploy-agent --mode l1 --name researcher --role "商业研究员"
+    
+    # L2 部署 (交互式)
+    ./deploy-agent --mode l2 --username wifey --role "夫人助理"
+    
+    # 预演模式
+    ./deploy-agent --mode l2 --username test --dry-run
+    
+    # 列出已部署 Agent
+    ./deploy-agent --list
+"""
+
+import argparse
+import getpass
+import sys
+import os
+from pathlib import Path
+
+# 添加 lib 到路径
+script_dir = Path(__file__).parent
+lib_dir = script_dir.parent / 'lib'
+sys.path.insert(0, str(lib_dir))
+
+from config import ConfigManager
+from deploy_l1 import L1Deployer
+from deploy_l2 import L2Deployer
+from verify import Verifier
+
+
+def print_banner():
+    """打印欢迎横幅"""
+    print("""
+🦀 OpenClaw Agent 部署工具 v1.0
+
+部署模式:
+  L1 - Profile (快速，5 min)     适合：测试/临时 Agent
+  L2 - 独立用户 (完整，30 min)   适合：生产/长期 Agent
+""")
+
+
+def get_sudo_password():
+    """安全获取 sudo 密码 (隐藏输入)"""
+    print("🔐 需要 sudo 权限来配置系统")
+    password = getpass.getpass("请输入 sudo 密码：")
+    return password
+
+
+def validate_args(args):
+    """验证命令行参数"""
+    if args.mode == 'l2' and not args.username:
+        print("❌ L2 模式必须指定 --username", file=sys.stderr)
+        return False
+    
+    if not args.name and args.mode == 'l1':
+        print("❌ 必须指定 --name", file=sys.stderr)
+        return False
+    
+    return True
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='OpenClaw Agent 自动化部署工具',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+示例:
+  %(prog)s --mode l1 --name researcher --role "商业研究员"
+  %(prog)s --mode l2 --username wifey --role "夫人助理"
+  %(prog)s --list
+  %(prog)s --verify --name shuaishuai
+        """
+    )
+    
+    # 部署模式
+    parser.add_argument('--mode', choices=['l1', 'l2'], help='部署模式')
+    
+    # Agent 信息
+    parser.add_argument('--name', help='Agent 名称 (L1 模式必需)')
+    parser.add_argument('--role', help='Agent 角色描述')
+    parser.add_argument('--bot-token', help='Telegram Bot Token (可选，交互式输入)')
+    
+    # L2 特有
+    parser.add_argument('--username', help='macOS 用户名 (L2 模式)')
+    parser.add_argument('--uid', type=int, help='用户 ID (L2 模式，自动分配)')
+    
+    # 高级选项
+    parser.add_argument('--port', type=int, help='端口号 (自动分配)')
+    parser.add_argument('--dry-run', action='store_true', help='预演模式')
+    parser.add_argument('--no-verify', action='store_true', help='跳过验证')
+    parser.add_argument('--verbose', '-v', action='store_true', help='详细输出')
+    parser.add_argument('--list', action='store_true', help='列出已部署 Agent')
+    parser.add_argument('--verify', action='store_true', help='验证模式')
+    
+    args = parser.parse_args()
+    
+    # 列出模式
+    if args.list:
+        from utils import list_agents
+        list_agents()
+        return 0
+    
+    # 验证模式
+    if args.verify:
+        if not args.name:
+            print("❌ 验证模式必须指定 --name", file=sys.stderr)
+            return 1
+        verifier = Verifier(args.name)
+        verifier.run()
+        return 0
+    
+    # 验证必需参数
+    if not args.mode:
+        print("❌ 必须指定 --mode (l1 或 l2)", file=sys.stderr)
+        return 1
+    
+    if not validate_args(args):
+        return 1
+    
+    # 打印横幅
+    print_banner()
+    
+    # 获取配置
+    config = ConfigManager()
+    
+    # 获取 sudo 密码 (仅在非 dry-run 模式)
+    sudo_password = None
+    if not args.dry_run:
+        sudo_password = get_sudo_password()
+    
+    # 选择部署器
+    if args.mode == 'l1':
+        deployer = L1Deployer(config, args, sudo_password)
+    else:  # l2
+        deployer = L2Deployer(config, args, sudo_password)
+    
+    # 执行部署
+    try:
+        print(f"\n🚀 开始部署 {args.name or args.username} ({args.mode.upper()} 模式)...\n")
+        
+        if args.dry_run:
+            print("📋 预演模式 - 不会实际执行部署\n")
+            deployer.dry_run()
+        else:
+            result = deployer.run()
+            
+            # 验证
+            if result.success and not args.no_verify:
+                print("\n✅ 部署完成，开始验证...\n")
+                verifier = Verifier(result)
+                verifier.run()
+            
+            # 输出报告
+            print_report(result)
+        
+        return 0
+        
+    except KeyboardInterrupt:
+        print("\n\n⚠️  用户中断，开始回滚...")
+        deployer.rollback()
+        return 1
+    except Exception as e:
+        print(f"\n❌ 部署失败：{e}")
+        if not args.dry_run:
+            print("🔄 开始回滚...")
+            deployer.rollback()
+        if args.verbose:
+            import traceback
+            traceback.print_exc()
+        return 1
+
+
+def print_report(result):
+    """打印部署报告"""
+    print("\n" + "="*60)
+    print("📊 部署报告")
+    print("="*60)
+    print(f"状态：{'✅ 成功' if result.success else '❌ 失败'}")
+    print(f"模式：{result.mode.upper()}")
+    print(f"名称：{result.agent_name}")
+    
+    if result.mode == 'l1':
+        print(f"Profile: ~/.openclaw-{result.agent_name}")
+    else:
+        print(f"用户：{result.username}")
+        print(f"UID: {result.uid}")
+    
+    print(f"端口：{result.port}")
+    print(f"Bot: @{result.bot_username}")
+    print(f"Gateway: {'运行中' if result.gateway_running else '未运行'}")
+    
+    if result.verify_report:
+        print("\n📋 验证结果:")
+        for check in result.verify_report.checks:
+            icon = "✅" if check.passed else "❌"
+            print(f"  {icon} {check.name}")
+    
+    print("="*60)
+    print(f"\n💡 访问：https://t.me/{result.bot_username}")
+    print("="*60 + "\n")
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -7,9 +7,20 @@
 
 ---
 
-## [2.0.0] - 2026-02-27
+## [2.1.0] - 2026-02-27
 
 ### 新增
+- ✨ 自动化部署工具 v1.0 (Phase 1 完成)
+  - `deploy-agent` 主部署脚本
+  - L1/L2 部署器
+  - 验证系统
+  - 回滚机制
+- ✨ 交互式 sudo 密码输入 (安全)
+- ✨ 端口/UID 自动分配
+- ✨ 快捷脚本 (`deploy-l1-agent.sh`, `deploy-l2-agent.sh`)
+- ✨ 部署使用指南 (`deploy-automation-guide.md`)
+
+### 改进
 - ✨ 极简配置模式 (10 min) — `sop-minimal-setup.md`
 - ✨ 文档维护指南 — `DOCUMENTATION-GUIDE.md`
 - ✨ 文档优化总结 — `DOCUMENT-OPTIMIZATION-SUMMARY.md`

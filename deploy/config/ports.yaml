@@ -1,0 +1,21 @@
+# 端口分配配置
+allocated:
+  - port: 18789
+    agent: claw
+    mode: l1
+  - port: 19001
+    agent: sage
+    mode: l1
+  - port: 19002
+    agent: shuaishuai
+    mode: l2
+    username: shuaishuai
+    uid: 502
+
+next_available:
+  l1: 19003
+  l2: 19004
+
+reserved:
+  - 18788
+  - 19000
