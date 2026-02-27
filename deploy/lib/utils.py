@@ -20,7 +20,8 @@ def list_agents():
     print("-" * 70)
     
     for agent in agents:
-        name = agent.get('name', 'N/A')
+        # 优先使用 name，如果没有则用 agent 字段 (兼容旧数据)
+        name = agent.get('name') or agent.get('agent', 'N/A')
         mode = agent.get('mode', 'N/A').upper()
         port = str(agent.get('port', 'N/A'))
         username = agent.get('username', '-')
