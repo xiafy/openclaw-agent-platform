@@ -280,3 +280,46 @@ Beacon: gateway 19003 → browser ctrl 19005  ← 冲突！Sage browser ctrl = B
 | 日期 | 版本 | 变更内容 | 操作人 |
 |------|------|---------|--------|
 | 2026-03-03 | v12 — Browser Control 端口冲突事故修复，Beacon 端口 19003→19010，端口分配铁律固化 | Claw |
+
+### 新 Agent 上线检查清单（2026-03-03，一天踩坑后固化）
+
+- [ ] Gateway 端口无冲突（含 gateway+2 的 browser control）
+- [ ] Agent 自身 openclaw.json 包含完整 `browser.profiles` 定义（含 cdpPort），不能只写 `defaultProfile`
+- [ ] BRAVE_API_KEY 等环境变量已写入 Agent 的 openclaw.json env 段
+- [ ] Model fallback 包含至少一个非 Anthropic 模型（防 cooldown 全军覆没）
+- [ ] Agent AGENTS.md 写入"基础设施禁区"规则（禁止自行修改 browser config / gateway restart）
+- [ ] LaunchAgent plist 端口与 openclaw.json 一致
+- [ ] 启动后验证：Telegram 回复 + browser snapshot + web_search 均正常
+
+### Browser Profile 配置规范（2026-03-03 事故后固化）
+
+每个 Agent 的 `openclaw.json` 必须包含完整的 browser 配置：
+
+```json
+{
+  "browser": {
+    "defaultProfile": "<agent>-browser",
+    "profiles": {
+      "<agent>-browser": {
+        "cdpPort": <分配的 CDP 端口>,
+        "color": "<hex>"
+      }
+    }
+  }
+}
+```
+
+仅写 `defaultProfile` 而不写 `profiles` 会导致 browser control server 报 "Profile not found"。
+
+### Anthropic Cooldown 防御规则（2026-03-03）
+
+- OpenClaw 的 rate limit cooldown 状态是 **per-process** 的，不是 per-key 的
+- 高频 Agent（如 Sage 做 Sprint 工作）容易触发 cooldown 恶性循环
+- 所有 Agent 的 model fallback 必须包含非 Anthropic 模型（qwen-plus / kimi）
+- 重启进程可清除 cooldown 状态
+
+### 变更日志（续）
+
+| 日期 | 版本 | 变更内容 |
+|------|------|---------|
+| 2026-03-03 | v13 | browser profile 完整配置规范 + 新 Agent 检查清单 + Anthropic cooldown 防御 + Agent 禁止自改基础设施规则 |
