@@ -1,6 +1,6 @@
 # Agent Platform — OpenClaw 多层隔离架构方案
 
-> **文档状态**: v11 - Beacon 上线 + 部署脚本 v2.0
+> **文档状态**: v12 - 端口冲突修复 + Browser Control 端口规则
 > **创建时间**: 2026-02-24
 > **最后更新**: 2026-03-03
 > **部署状态更新日期**: 2026-02-27
@@ -50,7 +50,7 @@
 |-------|------|------|------|---------|------|------|
 | **claw** | 🦀 CEO 助手 | L1 (默认 Profile) | 18789 | `~/.openclaw/` | 飞书 + Telegram | ✅ 运行中 |
 | **sage** | 🧪 SAGE 项目 Owner | L1 (Profile: sage) | 19001 | `~/.openclaw-sage/` | Telegram | ✅ 运行中 |
-| **beacon** | 🔥 智库 (研究+分析) | L1 (Profile: beacon) | 19003 | `~/.openclaw-beacon/` | Telegram | ✅ 运行中 |
+| **beacon** | 🔥 智库 (研究+分析) | L1 (Profile: beacon) | 19010 | `~/.openclaw-beacon/` | Telegram | ✅ 运行中 |
 | **shuaishuai** | 🌟 个人生活助理 | L2 (独立用户) | 19002 | `/Users/shuaishuai/.openclaw/` | Telegram | ✅ 运行中 (LaunchDaemon) |
 
 ### 模型配置（2026-03 统一策略）
@@ -242,3 +242,41 @@ curl -s http://127.0.0.1:18800/json/version
 ---
 
 *文档路径: `~/Documents/claw-outputs/projects/agent-platform/docs/spec.md`*
+
+### 事故：Browser Control 端口冲突导致 Sage + Beacon 交替死亡（2026-03-03 下午）
+
+**根因**：OpenClaw 的 browser control server 端口 = gateway port + 2（自动计算，不可配置）。
+
+```
+Sage:   gateway 19001 → browser ctrl 19003
+Beacon: gateway 19003 → browser ctrl 19005  ← 冲突！Sage browser ctrl = Beacon gateway
+```
+
+**症状**：
+1. 两个 Agent 交替卡死（谁先启动占 19003）
+2. Beacon `gateway restart` 后进入 canvas mount 死循环（新进程因端口被占无法启动，每 10s 重试）
+3. Sage Telegram polling 挂死（typing TTL 超时后无响应）
+4. 老进程残留占端口，LaunchAgent KeepAlive 不断 spawn 新进程全部失败
+
+**修复**：Beacon gateway 端口 19003 → 19010，browser ctrl 自动变为 19012。
+
+**固化规则（端口分配铁律）**：
+1. 每个 Agent 占 **3 个端口**：gateway(N), browser control(N+2), CDP(独立分配)
+2. **Agent 间 gateway 端口间距 ≥ 4**
+3. 新增 Agent 前必须检查 `(gateway, gateway+2)` 范围无重叠
+4. 当前分配表：
+
+| Agent | Gateway | Browser Ctrl (+2) | CDP |
+|-------|---------|-------------------|-----|
+| Claw | 18789 | 18791 | 18800 |
+| Sage | 19001 | 19003 | 18801 |
+| Shuaishuai | 19002 | 19004 | — |
+| Beacon | 19010 | 19012 | 18802 |
+
+5. 下一个可用 gateway 端口：**19014**
+
+### 变更日志
+
+| 日期 | 版本 | 变更内容 | 操作人 |
+|------|------|---------|--------|
+| 2026-03-03 | v12 — Browser Control 端口冲突事故修复，Beacon 端口 19003→19010，端口分配铁律固化 | Claw |
