@@ -12,26 +12,30 @@
 ```
 docs/
 ├── 📘 架构与规划
-│   └── spec.md                      # ⭐ 架构主文档 (v11)
+│   └── spec.md                          # ⭐ 架构主文档 (v11)
 │
-├── 📗 部署 SOP (3 种模式)
-│   ├── sop-l2-minimal-setup.md         # ⭐ 极简配置 (10 min)
-│   ├── QUICKSTART-L2.md             # ⭐ 快速部署 (90 min)
-│   └── sop-l2-agent-deployment.md   # 完整 SOP (90 min+)
+├── 📗 部署 SOP
+│   ├── sop-l1-agent-deployment.md       # ⭐ L1 部署 SOP (5-15 min)
+│   ├── sop-l2-minimal-setup.md          # ⭐ L2 极简配置 (10 min)
+│   ├── sop-l2-agent-deployment.md       #    L2 完整 SOP (90 min+)
+│   ├── QUICKSTART-L2.md                 #    L2 快速指南 (90 min)
+│   └── deploy-automation-guide.md       #    自动化工具使用指南
 │
-├── 📙 复盘与总结 (3 篇)
-│   ├── SUMMARY-shuaishuai-l2.md     # ⭐ 最终总结
-│   ├── retro-shuaishuai-l2.md       # 详细复盘
-│   └── DOCUMENT-OPTIMIZATION-SUMMARY.md  # 优化总结
+├── 📕 索引
+│   └── README-deployment.md             # ⭐ 本文件
 │
-├── 📕 索引与导航 (3 篇)
-│   ├── README-deployment.md         # ⭐ 文档索引
-│   ├── DOCUMENTATION-GUIDE.md       # ⭐ 维护指南
-│   └── DOCUMENT-REVIEW-REPORT.md    # ⭐ 审查报告
-│
-└── 📁 archive/ (归档)
-    ├── life-agent-plan.md           # 📜 shuaishuai 原始计划
-    └── plan-sage.md                 # 📜 sage 计划
+└── 📁 archive/ (历史文档)
+    ├── SUMMARY-shuaishuai-l2.md         # shuaishuai 部署总结
+    ├── retro-shuaishuai-l2.md           # shuaishuai 部署复盘
+    ├── DOCUMENT-OPTIMIZATION-SUMMARY.md # 文档优化记录
+    ├── DOCUMENT-REVIEW-REPORT.md        # 文档审查报告
+    ├── DOCUMENTATION-GUIDE.md           # 维护指南 (旧)
+    ├── REVIEW-COMPLETE-SUMMARY.md       # 审查完成总结
+    ├── PHASE2-COMPLETE.md               # Phase2 完成记录
+    ├── HEARTBEAT_DESIGN.md              # Heartbeat 设计文档
+    ├── deploy-automation-design.md      # 部署自动化设计文档
+    ├── life-agent-plan.md               # shuaishuai 原始计划
+    └── plan-sage.md                     # sage 计划
 ```
 
 ---
