@@ -172,4 +172,4 @@ echo "<sudo 密码>" | sudo -S mkdir -p /Users/<username>/.openclaw/cron
 
 ---
 
-*文档路径：`~/Documents/claw-outputs/projects/agent-platform/docs/sop-minimal-setup.md`*
+*文档路径：`~/Documents/claw-outputs/projects/agent-platform/docs/sop-l2-minimal-setup.md`*

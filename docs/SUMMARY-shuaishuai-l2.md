@@ -26,7 +26,7 @@
 | 文档 | 路径 | 字数 | 用途 |
 |------|------|------|------|
 | `spec.md` (v9) | 项目主文档 | ~7K | 架构 + 状态 |
-| `sop-minimal-setup.md` | 极简 SOP | ~5K | 10 min 配置 ⭐ |
+| `sop-l2-minimal-setup.md` | 极简 SOP | ~5K | 10 min 配置 ⭐ |
 | `sop-l2-agent-deployment.md` | SOP v1.0 | ~9K | 标准作业程序 |
 | `retro-shuaishuai-l2.md` | 复盘报告 | ~11K | 踩坑 + 经验 |
 | `README-deployment.md` | 文档索引 | ~7K | 导航 + 快速查找 |

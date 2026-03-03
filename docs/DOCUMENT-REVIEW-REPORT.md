@@ -12,7 +12,7 @@
 | # | 文档 | 行数 | 字数 | 最后更新 | 状态 |
 |---|------|------|------|---------|------|
 | 1 | `spec.md` | 177 | ~7.2K | 2026-02-27 | ✅ v9 |
-| 2 | `sop-minimal-setup.md` | 175 | ~5.1K | 2026-02-27 | ✅ v1.0 |
+| 2 | `sop-l2-minimal-setup.md` | 175 | ~5.1K | 2026-02-27 | ✅ v1.0 |
 | 3 | `QUICKSTART-L2.md` | 321 | ~8.3K | 2026-02-27 | ✅ v2.0 |
 | 4 | `sop-l2-agent-deployment.md` | 320 | ~8.6K | 2026-02-27 | ✅ v1.0 |
 | 5 | `README-deployment.md` | 245 | ~6.7K | 2026-02-27 | ✅ v2.0 |
@@ -37,7 +37,7 @@ docs/
 │   └── plan-sage.md                 # ⚠️ sage 计划 (过时)
 │
 ├── 📗 部署 SOP (3 篇)
-│   ├── sop-minimal-setup.md         # ⭐ 极简配置 (10 min)
+│   ├── sop-l2-minimal-setup.md         # ⭐ 极简配置 (10 min)
 │   ├── QUICKSTART-L2.md             # ⭐ 快速部署 (90 min)
 │   └── sop-l2-agent-deployment.md   # 完整 SOP (90 min+)
 │
@@ -93,7 +93,7 @@ docs/
 | # | 问题 | 影响 | 建议 |
 |---|------|------|------|
 | 4 | 文档间引用不一致 (有的用 `⭐` 有的不用) | 视觉混乱 | 统一标记规范 |
-| 5 | `life-agent-plan.md` 和 `sop-minimal-setup.md` 有重复内容 | 维护成本高 | 考虑合并或交叉引用 |
+| 5 | `life-agent-plan.md` 和 `sop-l2-minimal-setup.md` 有重复内容 | 维护成本高 | 考虑合并或交叉引用 |
 | 6 | 缺少 LICENSE 文件 | 开源合规性 | 添加 MIT License |
 | 7 | 缺少 CHANGELOG.md | 版本追踪不便 | 创建变更日志 |
 
@@ -182,7 +182,7 @@ mv docs/plan-sage.md docs/archive/_plan-sage.md
 
 | 文档 | 预计使用频率 | 重要性 | 维护优先级 |
 |------|-------------|--------|-----------|
-| `sop-minimal-setup.md` | ⭐⭐⭐⭐⭐ | 极高 | P0 |
+| `sop-l2-minimal-setup.md` | ⭐⭐⭐⭐⭐ | 极高 | P0 |
 | `QUICKSTART-L2.md` | ⭐⭐⭐⭐☆ | 高 | P0 |
 | `README-deployment.md` | ⭐⭐⭐⭐☆ | 高 | P0 |
 | `spec.md` | ⭐⭐⭐☆☆ | 中 | P1 |
@@ -199,7 +199,7 @@ mv docs/plan-sage.md docs/archive/_plan-sage.md
 ### 核心文档 (必须保留)
 
 1. `spec.md` — 架构主文档
-2. `sop-minimal-setup.md` — 极简 SOP
+2. `sop-l2-minimal-setup.md` — 极简 SOP
 3. `QUICKSTART-L2.md` — 快速部署
 4. `README-deployment.md` — 文档索引
 5. `README.md` — GitHub 封面

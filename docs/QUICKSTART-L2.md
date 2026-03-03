@@ -10,7 +10,7 @@
 
 | 模式 | 适用场景 | 耗时 | 文档 |
 |------|---------|------|------|
-| **极简模式** ⭐ | 已有 macOS 用户，快速启动 | 10 min | `sop-minimal-setup.md` |
+| **极简模式** ⭐ | 已有 macOS 用户，快速启动 | 10 min | `sop-l2-minimal-setup.md` |
 | **完整模式** | 从零开始，创建新用户 | 90 min | 本文档 |
 
 ---
@@ -275,7 +275,7 @@ openclaw pairing approve telegram <CODE>
 
 ```bash
 # 阅读并执行极简 SOP
-cat docs/sop-minimal-setup.md
+cat docs/sop-l2-minimal-setup.md
 ```
 
 **极简模式配置内容**:
@@ -296,7 +296,7 @@ cat docs/sop-minimal-setup.md
 
 | 文档 | 用途 |
 |------|------|
-| `sop-minimal-setup.md` | 极简配置 SOP (10 min) |
+| `sop-l2-minimal-setup.md` | 极简配置 SOP (10 min) |
 | `sop-l2-agent-deployment.md` | 详细步骤 + 踩坑记录 |
 | `retro-shuaishuai-l2.md` | 实战复盘报告 |
 | `SUMMARY-shuaishuai-l2.md` | 成果总结 |

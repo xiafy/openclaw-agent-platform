@@ -15,7 +15,7 @@ docs/
 │   └── spec.md                      # ⭐ 架构主文档 (v11)
 │
 ├── 📗 部署 SOP (3 种模式)
-│   ├── sop-minimal-setup.md         # ⭐ 极简配置 (10 min)
+│   ├── sop-l2-minimal-setup.md         # ⭐ 极简配置 (10 min)
 │   ├── QUICKSTART-L2.md             # ⭐ 快速部署 (90 min)
 │   └── sop-l2-agent-deployment.md   # 完整 SOP (90 min+)
 │
@@ -84,7 +84,7 @@ docs/
 | 踩坑记录 | `retro-shuaishuai-l2.md` | 第三章 |
 | 最佳实践 | `SUMMARY-shuaishuai-l2.md` | 核心最佳实践 |
 | 时间分配 | `retro-shuaishuai-l2.md` | 时间分配回顾 |
-| 配置方案 | `sop-minimal-setup.md` | 配置原则 |
+| 配置方案 | `sop-l2-minimal-setup.md` | 配置原则 |
 
 **预计耗时**: 30 min
 
@@ -149,7 +149,7 @@ docs/
 | 文档 | 路径 | 字数 | 用途 | 状态 |
 |------|------|------|------|------|
 | **spec.md** | `spec.md` | ~8K | 架构主文档 | ✅ v11 |
-| **sop-minimal-setup.md** | `sop-minimal-setup.md` | ~5K | ⭐ 极简配置 SOP | ✅ v1.0 |
+| **sop-l2-minimal-setup.md** | `sop-l2-minimal-setup.md` | ~5K | ⭐ 极简配置 SOP | ✅ v1.0 |
 | **QUICKSTART-L2.md** | `QUICKSTART-L2.md` | ~8K | ⭐ 快速部署指南 | ✅ v2.0 |
 | **sop-l2-agent-deployment.md** | `sop-l2-agent-deployment.md` | ~9K | 完整部署 SOP | ✅ v1.0 |
 | **SUMMARY-shuaishuai-l2.md** | `SUMMARY-shuaishuai-l2.md` | ~6K | ⭐ 最终总结 | ✅ v1.1 |
@@ -188,13 +188,13 @@ docs/
 ### 新手 (第一次部署)
 ```
 1. 阅读 QUICKSTART-L2.md (了解全貌)
-2. 执行 sop-minimal-setup.md (快速启动)
+2. 执行 sop-l2-minimal-setup.md (快速启动)
 3. 遇到问题查阅 retro-shuaishuai-l2.md (踩坑记录)
 ```
 
 ### 老手 (第二次及以后)
 ```
-1. 直接执行 sop-minimal-setup.md (10 min 完成)
+1. 直接执行 sop-l2-minimal-setup.md (10 min 完成)
 2. 按需扩展配置
 ```
 

@@ -20,7 +20,7 @@
 
 | 文档 | 用途 | 更新频率 | 负责人 |
 |------|------|---------|--------|
-| `sop-minimal-setup.md` | 极简配置 (10 min) | 每次部署后优化 | Claw |
+| `sop-l2-minimal-setup.md` | 极简配置 (10 min) | 每次部署后优化 | Claw |
 | `QUICKSTART-L2.md` | 快速部署 (90 min) | 每次部署后优化 | Claw |
 | `sop-l2-agent-deployment.md` | 完整 SOP | 重大变更时 | Claw |
 

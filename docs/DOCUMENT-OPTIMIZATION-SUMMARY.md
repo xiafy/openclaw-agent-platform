@@ -22,7 +22,7 @@
 
 | 文档 | 用途 | 字数 |
 |------|------|------|
-| `sop-minimal-setup.md` | ⭐ 极简配置 SOP (10 min) | ~4K |
+| `sop-l2-minimal-setup.md` | ⭐ 极简配置 SOP (10 min) | ~4K |
 | `README-deployment.md` | ⭐ 文档索引 (v2.0 重构) | ~5K |
 | `DOCUMENTATION-GUIDE.md` | ⭐ 文档维护指南 | ~3K |
 
@@ -44,7 +44,7 @@
 
 **现在**: 三种模式按需选择
 ```
-极简模式 (10 min)  →  sop-minimal-setup.md
+极简模式 (10 min)  →  sop-l2-minimal-setup.md
 快速部署 (90 min)  →  QUICKSTART-L2.md
 完整 SOP (90 min+) →  sop-l2-agent-deployment.md
 ```
@@ -122,7 +122,7 @@ docs/
 │   └── life-agent-plan.md           # 📜 原始计划 (历史参考)
 │
 ├── 📗 部署 SOP (3 种模式)
-│   ├── sop-minimal-setup.md         # ⭐ 极简配置 (10 min) [新增]
+│   ├── sop-l2-minimal-setup.md         # ⭐ 极简配置 (10 min) [新增]
 │   ├── QUICKSTART-L2.md             # ⭐ 快速部署 (90 min) [v2.0]
 │   └── sop-l2-agent-deployment.md   # 完整 SOP (90 min+)
 │
@@ -162,7 +162,7 @@ docs/
 
 | 角色 | 需求 | 覆盖文档 |
 |------|------|---------|
-| 新手 | 快速部署 | `sop-minimal-setup.md` |
+| 新手 | 快速部署 | `sop-l2-minimal-setup.md` |
 | 实施人员 | 完整流程 | `sop-l2-agent-deployment.md` |
 | 技术团队 | 架构设计 | `spec.md` |
 | 管理者 | 成果总结 | `SUMMARY-shuaishuai-l2.md` |
@@ -175,7 +175,7 @@ docs/
 
 | 场景 | 需求 | 覆盖文档 |
 |------|------|---------|
-| 部署新 Agent | 快速启动 | `sop-minimal-setup.md` |
+| 部署新 Agent | 快速启动 | `sop-l2-minimal-setup.md` |
 | 部署新 Agent | 完整部署 | `QUICKSTART-L2.md` |
 | 了解架构 | 整体设计 | `spec.md` |
 | 学习经验 | 踩坑记录 | `retro-shuaishuai-l2.md` |
@@ -249,7 +249,7 @@ docs/
 ```
 我要...                          看这个文档
 ───────────────────────────────  ──────────────────────────
-快速部署 (已有用户)         →    sop-minimal-setup.md
+快速部署 (已有用户)         →    sop-l2-minimal-setup.md
 完整部署 (从零开始)         →    QUICKSTART-L2.md
 了解架构                    →    spec.md
 学习经验                    →    retro-shuaishuai-l2.md

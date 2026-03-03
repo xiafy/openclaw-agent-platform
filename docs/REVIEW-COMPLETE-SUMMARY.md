@@ -70,7 +70,7 @@ openclaw-agent-platform/
     │   └── spec.md                  # ⭐ v9
     │
     ├── 📗 部署 SOP (3 篇)
-    │   ├── sop-minimal-setup.md     # ⭐ 10 min
+    │   ├── sop-l2-minimal-setup.md     # ⭐ 10 min
     │   ├── QUICKSTART-L2.md         # ⭐ v2.0
     │   └── sop-l2-agent-deployment.md
     │
@@ -183,14 +183,14 @@ openclaw-agent-platform/
 
 ```
 1. 阅读 README.md (GitHub 封面)
-2. 执行 sop-minimal-setup.md (10 min)
+2. 执行 sop-l2-minimal-setup.md (10 min)
 3. 遇到问题查看 QUICKSTART-L2.md
 ```
 
 ### 老用户
 
 ```
-1. 直接执行 sop-minimal-setup.md
+1. 直接执行 sop-l2-minimal-setup.md
 2. 查阅 CHANGELOG.md 了解更新
 ```
 

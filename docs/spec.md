@@ -6,7 +6,7 @@
 > **部署状态更新日期**: 2026-02-27
 > **配套文档**: 
 > - 文档索引：`README-deployment.md` ⭐
-> - 极简 SOP: `sop-minimal-setup.md` ⭐ (10 min)
+> - 极简 SOP: `sop-l2-minimal-setup.md` ⭐ (10 min)
 > - 快速指南：`QUICKSTART-L2.md` ⭐ (90 min)
 > - 完整 SOP: `sop-l2-agent-deployment.md` (90 min + 踩坑)
 > - 复盘报告：`retro-shuaishuai-l2.md`
