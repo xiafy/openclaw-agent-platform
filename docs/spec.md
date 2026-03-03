@@ -1,8 +1,8 @@
 # Agent Platform — OpenClaw 多层隔离架构方案
 
-> **文档状态**: v9 - 文档优化完成 (SOP v2.0)
+> **文档状态**: v11 - Beacon 上线 + 部署脚本 v2.0
 > **创建时间**: 2026-02-24
-> **最后更新**: 2026-02-27
+> **最后更新**: 2026-03-03
 > **部署状态更新日期**: 2026-02-27
 > **配套文档**: 
 > - 文档索引：`README-deployment.md` ⭐
@@ -49,6 +49,7 @@
 |-------|------|------|------|---------|------|------|
 | **claw** | 🦀 CEO 助手 | L1 (默认 Profile) | 18789 | `~/.openclaw/` | 飞书 + Telegram | ✅ 运行中 |
 | **sage** | 🧪 SAGE 项目 Owner | L1 (Profile: sage) | 19001 | `~/.openclaw-sage/` | Telegram | ✅ 运行中 |
+| **beacon** | 🔥 智库 (研究+分析) | L1 (Profile: beacon) | 19003 | `~/.openclaw-beacon/` | Telegram | ✅ 运行中 |
 | **shuaishuai** | 🌟 个人生活助理 | L2 (独立用户) | 19002 | `/Users/shuaishuai/.openclaw/` | Telegram | ✅ 运行中 (LaunchDaemon) |
 
 ### 模型配置（2026-03 统一策略）
@@ -71,12 +72,9 @@
 | 项目 | 状态 | 说明 |
 |------|------|------|
 | 跨 Agent 通信 | ❌ 未配置 | Telegram 互发方案未实施 |
-| researcher Agent | ❌ 未创建 | 计划 L1 Profile |
 | support Agent | ❌ 未创建 | 计划 L1 Profile |
 | wifey Agent | ❌ 未创建 | 计划 L2 独立用户 |
-| Claw 迁移到 L2 | ❌ 未执行 | 当前仍在 xiafybot 用户下 |
-| Sage AGENTS.md 消除重复 | ⚠️ 待执行 | 六步法等改为引用共享层 protocols |
-| Telegram Bot Token 轮换 | ⚠️ 未处理 | sage bot token 暴露在聊天记录中 |
+| Sage AGENTS.md 消除重复 | P3 | 各 Agent 独立演进，不强制统一（2026-03-03 夏总定调）|
 
 ---
 
@@ -84,8 +82,9 @@
 
 | Agent ID | 角色 | 级别 | 渠道 | 优先级 |
 |----------|------|------|------|--------|
-| **claw** | 🦀 CEO 助手 | L1→L2 | 飞书 + TG | ✅ 已上线 |
+| **claw** | 🦀 CEO 助手 | L1 | 飞书 + TG | ✅ 已上线 |
 | **sage** | 🧪 SAGE 项目 Owner | L1 | TG | ✅ 已上线 |
+| **beacon** | 🔥 智库 (市场研究+数据分析) | L1 | TG | ✅ 已上线 |
 | **researcher** | 🔍 商业研究员 | L1 | TG | P1 |
 | **support** | 🎧 售后服务 Owner | L1 | TG | P2 |
 | **life** | 🌴 个人生活助理 | L2 | TG | P3 |
@@ -129,6 +128,16 @@
 
 **判断标准**: 换一个全新 Agent 进来，它需不需要知道？需要 → 通用。不需要 → 专属。
 
+### Beacon 同步状态
+
+| 资产 | 同步方式 | 状态 |
+|------|----------|------|
+| skills/summarize | symlink | ✅ |
+| skills/meeting-notes | symlink | ✅ |
+| skills/domain-model-extract | symlink | ✅ |
+| protocols/* | 未配置 | ❌ 待配 |
+| knowledge/* | 未配置 | ❌ 待配 |
+
 ### Sage 同步状态
 
 | 资产 | 同步方式 | 状态 |
@@ -147,23 +156,77 @@
 4. 每周 review：是否有角色专属知识应升级为通用知识
 5. 共享层文件是**只读引用**，各 Agent 不应直接修改
 
+### 多 Agent 知识治理原则（2026-03-03 夏总定调）⭐
+
+1. **独立演进**：每个 Agent 独自发展符合其工作场景的能力和经验，不强制同步
+2. **提取与分发**：Claw 负责从各 Agent 实践中提炼可共用的方法论/经验/Skill，推荐（非强制）给其他 Agent
+3. **自主吸收**：接收方自主判断如何吸收，避免新技能与原有技能冲突导致降智或失能
+
+**共享层定位**：可选参考库，不是强制同步源。Claw 的职责是"提炼+推荐"，不是"覆盖+替换"。
+
 ---
 
 ## 六、待实施
 
 | 项目 | 优先级 | 说明 |
 |------|--------|------|
-| Sage AGENTS.md 消除重复 | P1 | 六步法等改为引用 `protocols/execution-protocol.md` |
-| industry-insights.md | P2 | 从 Claw knowledge-base.md 提取通用行业知识到共享层 |
 | 跨 Agent 通信 | P2 | Telegram 互发方案 |
-| researcher Agent | P1 | L1 Profile |
+| industry-insights.md | P2 | 从 Claw knowledge-base.md 提取通用行业知识到共享层 |
 | support Agent | P2 | L1 Profile |
 | wifey Agent | P3 | L2 独立用户 |
-| Claw 迁移到 L2 | P3 | 当前仍在 xiafybot 用户下 |
+| ~~Sage AGENTS.md 消除重复~~ | P3 | 各 Agent 独立演进，不强制统一（2026-03-03 夏总定调）|
+| ~~Claw 迁移到 L2~~ | 取消 | Claw 是夏总个人助理，应在 xiafybot 用户下运行 |
+| ~~researcher Agent~~ | 完成 | 合并为 Beacon 智库 Agent（2026-03-03）|
 
 ---
 
-## 七、变更日志
+## 八、浏览器隔离策略（2026-03-03 补充）⭐
+
+### 事故：浏览器端口冲突导致 Claw 无头浏览器不可用
+
+**时间**：2026-03-03 07:00 ~ 14:00（约 7 小时）
+**影响**：07:00 会议纪要扫描 cron 无法使用浏览器，3/2 管理例会纪要未自动归档
+
+**根因**：
+1. Claw 和 Sage 的 `browser.cdpPort` 均未显式配置，依赖自动计算
+2. 某次 gateway 重启后，Chrome 实例使用了 Claw 的 user-data 但绑定 Sage 端口（19012）
+3. Claw gateway 连接默认 18800 → 超时 → 所有浏览器操作失败
+
+**修复（三轮迭代）**：
+1. 应急：杀掉冲突 Chrome 进程 → Claw 恢复
+2. 误修：写入 `browser.cdpPort`（无效 key）→ Sage crash → 移除
+3. 正解：给 Sage 创建独立 browser profile `sage-browser`（端口 18801 自动分配），设置 `defaultProfile`
+
+### 多 Agent 浏览器隔离规则
+
+| Agent | Browser Profile | CDP 端口 | User-Data 目录 | 状态 |
+|-------|----------------|----------|----------------|------|
+| Claw | openclaw | 18800 | `~/.openclaw/browser/openclaw/user-data` | ✅ |
+| Sage | sage-browser | 18801 | `~/.openclaw/browser/sage-browser/user-data` | ✅ |
+| Beacon | beacon-browser | 18802 | `~/.openclaw/browser/beacon-browser/user-data` | ✅ |
+
+Sage 配置：`~/.openclaw-sage/openclaw.json` → `"browser": {"defaultProfile": "sage-browser"}`
+
+**⚠️ 重要**：CDP 端口由 OpenClaw 创建 browser profile 时自动分配，**不能通过 openclaw.json 手动配置**（`browser.cdpPort` 是无效 key，会导致 gateway 启动失败！2026-03-03 实锤）。
+
+**规则**：
+1. CDP 端口由 OpenClaw 自动管理，不要手动修改
+2. User-data 目录天然隔离（跟随 configDir）
+3. 同一 user-data 只能有一个 Chrome 实例
+4. 如遇端口冲突，杀掉错误进程让 OpenClaw 自动重新分配
+
+### 诊断 SOP
+
+```bash
+# 1. 查运行中的 Chrome 及端口
+ps aux | grep "remote-debugging-port" | grep -v grep
+# 2. 确认端口可达
+curl -s http://127.0.0.1:18800/json/version
+# 3. 冲突时 kill 错误进程，OpenClaw 会自动重启
+```
+
+
+## 九、变更日志
 
 | 日期 | 变更 | 操作人 |
 |------|------|--------|
@@ -172,6 +235,8 @@
 | 2026-02-26 | 共享知识层建立（protocols + knowledge + skills），Sage symlink 配置完成 | Claw |
 | 2026-02-27 | v7 — shuaishuai (life Agent) L2 部署完成，共享层 symlink 配置，LaunchDaemon 开机自启 | Claw |
 | 2026-02-27 | v8 — 复盘完成，发布 SOP v1.0，文档结构化 | Claw |
+| 2026-03-03 | v11 — 多 Agent 知识治理原则（独立演进+提取分发+自主吸收），Sage 消除重复降 P3 | Claw |
+| 2026-03-03 | v10 — 浏览器端口冲突事故（三轮修复），新增浏览器隔离策略，Sage 独立 profile sage-browser | Claw |
 
 ---
 

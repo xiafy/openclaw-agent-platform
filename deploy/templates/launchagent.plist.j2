@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Comment</key>
+	<string>OpenClaw Gateway - {{ agent_name }} profile (v2026.2.26)</string>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>HOME</key>
+		<string>{{ home_dir }}</string>
+		<key>PATH</key>
+		<string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+	</dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>ai.openclaw.gateway.{{ agent_name }}</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/opt/homebrew/bin/openclaw</string>
+		<string>--profile</string>
+		<string>{{ agent_name }}</string>
+		<string>gateway</string>
+		<string>run</string>
+		<string>--port</string>
+		<string>{{ port }}</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>{{ profile_dir }}/logs/gateway.err.log</string>
+	<key>StandardOutPath</key>
+	<string>{{ profile_dir }}/logs/gateway.log</string>
+</dict>
+</plist>

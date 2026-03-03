@@ -1,9 +1,8 @@
-# Shuaishuai Agent (L2) 搭建计划
+# Life Agent (L2) 搭建计划
 
-> **版本**: v1.1 - 已审核
+> **版本**: v1.0 - 待审核
 > **创建时间**: 2026-02-27
-> **更新时间**: 2026-02-27
-> **目标**: 在 macOS 上创建独立用户 `shuaishuai`，部署 L2 级别隔离的个人生活助理 Agent
+> **目标**: 在 macOS 上创建独立用户 `life`，部署 L2 级别隔离的个人生活助理 Agent
 
 ---
 
@@ -11,7 +10,7 @@
 
 | 项目 | 状态 | 负责人 |
 |------|------|--------|
-| Telegram Bot Token | ✅ 已提供 | 夏总 |
+| Telegram Bot Token | ❌ 待创建 | 夏总 |
 | macOS 管理员 sudo 权限 | ✅ 可用 | 夏总 |
 | 共享层 `/Users/Shared/openclaw-common/` | ✅ 已存在 | Claw |
 
@@ -54,9 +53,9 @@
 | 1.2 | 记录 Bot Token（格式：`123456789:ABCdefGHIjklMNOpqrsTUVwxyz`） | - |
 | 1.3 | 将 Token 通过安全渠道发给 Claw | - |
 
-**Bot 信息**：
-- Bot Token: `8343182214:AAGEK-hZ7-0aBDfd9sCJkhJaBh1tjKc4Fr4`
-- Bot Username: 待确认（@BotFather 创建时设置）
+**Bot 命名建议**：
+- Bot Username: `XiaLifeBot` 或 `LifeAssistantXiaBot`
+- Bot Name: `Xia's Life Assistant`
 
 ---
 
@@ -67,7 +66,7 @@
 | 2.1 | `sudo dscl . -create /Users/life` | 创建用户 |
 | 2.2 | `sudo dscl . -create /Users/life UserShell /bin/zsh` | 设置 Shell |
 | 2.3 | `sudo dscl . -create /Users/life RealName "Life Agent"` | 全名 |
-| 2.4 | `sudo dscl . -create /Users/shuaishuai UniqueID "502"` | UID（501=xiafybot，502=shuaishuai） |
+| 2.4 | `sudo dscl . -create /Users/life UniqueID "503"` | UID（501=第一个用户，502=xiafybot，503=life） |
 | 2.5 | `sudo dscl . -create /Users/life PrimaryGroupID 20` | 设置组 |
 | 2.6 | `sudo dscl . -create /Users/life NFSHomeDirectory /Users/life` | 家目录 |
 | 2.7 | `sudo createhomedir -c -u life` | 创建家目录 |

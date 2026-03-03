@@ -75,7 +75,7 @@ class DeployLogger:
     
     def step_start(self, step_num: int, total: int, message: str):
         """步骤开始"""
-        self.logger.info(f'[{step_num}/{total}] {message}... ', end='', flush=True)
+        self.logger.info(f'[{step_num}/{total}] {message}...')
     
     def step_complete(self, step_num: int, total: int, message: str):
         """步骤完成"""

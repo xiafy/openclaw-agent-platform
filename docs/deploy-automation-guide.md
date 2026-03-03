@@ -1,7 +1,7 @@
 # 部署自动化使用指南
 
-> **版本**: v1.0
-> **日期**: 2026-02-27
+> **版本**: v2.0
+> **日期**: 2026-03-03
 > **用途**: Agent 自动化部署工具使用指南
 
 ---
@@ -34,6 +34,19 @@ cd ~/Documents/claw-outputs/projects/agent-platform
   --bot-token "123456:ABCdef..." \
   --no-verify
 ```
+
+
+---
+
+## ⚡ v2.0 变更 (2026-03-03)
+
+- **openclaw.json 模板重写**: 对齐实际运行格式（嵌套 channels/agents/models 结构）
+- **新增 auth-profiles 复制**: 自动从 Claw 复制 API Key
+- **新增 browser profile 创建**: 每个 Agent 独立浏览器，避免端口冲突
+- **新增 LaunchAgent (L1)**: 替代 Popen，支持开机自启和 launchd 管理
+- **新增 Claw 安全检查**: 禁止操作 Claw 端口 18789 和 LaunchAgent
+- **新增部署验证**: HTTP probe 检查 Gateway 是否响应
+- **L2 同步更新**: 复用 v2 模板，增加 browser profile 和验证步骤
 
 ---
 
@@ -77,9 +90,9 @@ cd ~/Documents/claw-outputs/projects/agent-platform
 请输入 sudo 密码：********
 
 # 3. 等待部署完成
-[1/7] 检查前置条件... ✅
-[2/7] 分配端口... ✅
-[3/7] 创建 Profile 目录... ✅
+[1/9] 检查前置条件... ✅
+[2/9] 分配端口... ✅
+[3/9] 创建目录结构... ✅
 ...
 ✅ 部署完成！
 

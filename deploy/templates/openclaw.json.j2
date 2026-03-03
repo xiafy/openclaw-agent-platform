@@ -2,37 +2,150 @@
   "meta": {
     "lastTouchedVersion": "2026.2.26",
     "agent": "{{ agent_name }}",
-    "deployed_by": "deploy-agent v1.0",
+    "deployed_by": "deploy-agent v2.0",
     "deployed_at": "{{ deploy_time }}"
   },
   "env": {
     "DASHSCOPE_API_KEY": "{{ dashscope_key }}"
   },
-  "gateway": {
-    "port": {{ port }},
-    "host": "127.0.0.1"
+  "browser": {
+    "defaultProfile": "{{ agent_name }}-browser"
   },
-  "channels": {
-    "telegram": {
-      "enabled": true,
-      "botToken": "{{ bot_token }}",
-      "webhookUrl": ""
+  "auth": {
+    "profiles": {
+      "openai-codex:default": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      },
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "dashscope:default": {
+        "provider": "dashscope",
+        "mode": "token"
+      }
+    }
+  },
+  "models": {
+    "providers": {
+      "dashscope": {
+        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "${DASHSCOPE_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3.5-flash",
+            "name": "Qwen 3.5 Flash",
+            "reasoning": true,
+            "input": ["text"],
+            "cost": {"input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0},
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen3.5-plus",
+            "name": "Qwen 3.5 Plus",
+            "reasoning": true,
+            "input": ["text"],
+            "cost": {"input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0},
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "fireworks": {
+        "baseUrl": "https://api.fireworks.ai/inference/v1",
+        "apiKey": "{{ fireworks_key }}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "accounts/fireworks/models/kimi-k2p5",
+            "name": "Kimi K2.5",
+            "input": ["text"],
+            "cost": {"input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0},
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "accounts/fireworks/models/glm-5",
+            "name": "GLM-5",
+            "input": ["text"],
+            "cost": {"input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0},
+            "contextWindow": 202752,
+            "maxTokens": 8192
+          }
+        ]
+      },
+      "openai-codex": {
+        "baseUrl": "https://api.openai.com/v1",
+        "auth": "oauth",
+        "api": "openai-responses",
+        "models": [
+          {
+            "id": "gpt-5.3-codex",
+            "name": "GPT-5.3 Codex",
+            "api": "openai-responses",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {"input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0},
+            "contextWindow": 200000,
+            "maxTokens": 16384
+          }
+        ]
+      }
     }
   },
   "agents": {
     "defaults": {
       "model": {
-        "primary": "{{ default_model }}"
+        "primary": "{{ default_model }}",
+        "fallbacks": ["anthropic/claude-opus-4-6"]
       },
-      "features": {
-        "search": true,
-        "browser": true,
-        "programming": true,
-        "summarize": true
+      "models": {
+        "anthropic/claude-opus-4-6": {"alias": "opus"},
+        "anthropic/claude-sonnet-4-6": {"alias": "sonnet"},
+        "fireworks/accounts/fireworks/models/glm-5": {"alias": "glm-5"},
+        "fireworks/accounts/fireworks/models/kimi-k2p5": {"alias": "kimi"},
+        "dashscope/qwen3.5-flash": {"alias": "qwen"},
+        "dashscope/qwen3.5-plus": {"alias": "qwen-plus"},
+        "openai-codex/gpt-5.3-codex": {"alias": "codex"}
+      },
+      "workspace": "{{ workspace_path }}",
+      "compaction": {
+        "mode": "safeguard"
       }
     }
   },
-  "workspace": {
-    "path": "{{ workspace_path }}"
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": ["tg:6904794492"],
+      "groupPolicy": "allowlist",
+      "streaming": "off",
+      "accounts": {
+        "default": {
+          "dmPolicy": "pairing",
+          "botToken": "{{ bot_token }}",
+          "groupPolicy": "allowlist",
+          "streaming": "off"
+        }
+      }
+    }
+  },
+  "gateway": {
+    "port": {{ port }},
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "{{ gateway_token }}"
+    }
   }
 }

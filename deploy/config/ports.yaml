@@ -11,10 +11,13 @@ allocated:
     mode: l2
     username: shuaishuai
     uid: 502
+  - port: 19003
+    agent: beacon
+    mode: l1
 
 next_available:
-  l1: 19003
-  l2: 19004
+  l1: 19004
+  l2: 19005
 
 reserved:
   - 18788

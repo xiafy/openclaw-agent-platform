@@ -1,7 +1,7 @@
 # Agent Platform — 文档中心
 
-> **版本**: v2.0
-> **更新日期**: 2026-02-27
+> **版本**: v3.0
+> **更新日期**: 2026-03-03
 > **维护者**: Claw 🦀
 > **用途**: 统一文档入口，快速找到所需资料
 
@@ -12,7 +12,7 @@
 ```
 docs/
 ├── 📘 架构与规划
-│   └── spec.md                      # ⭐ 架构主文档 (v9)
+│   └── spec.md                      # ⭐ 架构主文档 (v11)
 │
 ├── 📗 部署 SOP (3 种模式)
 │   ├── sop-minimal-setup.md         # ⭐ 极简配置 (10 min)
@@ -42,11 +42,12 @@ docs/
 
 **推荐路径**:
 
-| 需求 | 文档 | 耗时 |
-|------|------|------|
-| 快速启动 (已有 macOS 用户) | `sop-minimal-setup.md` | 10 min |
-| 完整部署 (从零开始) | `QUICKSTART-L2.md` | 90 min |
-| 深入学习 (理解原理) | `sop-l2-agent-deployment.md` | 120 min |
+| 需求 | 文档/工具 | 耗时 |
+|------|----------|------|
+| L1 自动部署 (推荐) | `deploy-agent --mode l1` | 5 min |
+| L2 自动部署 (推荐) | `deploy-agent --mode l2` | 30 min |
+| L2 手动部署 | `QUICKSTART-L2.md` | 90 min |
+| 深入学习 | `sop-l2-agent-deployment.md` | 120 min |
 
 **执行流程**:
 ```
@@ -124,6 +125,7 @@ docs/
 |-------|------|------|------|---------|------|------|
 | **claw** | 🦀 CEO 助手 | L1 | 18789 | Profile | ✅ | spec.md |
 | **sage** | 🧪 SAGE 项目 | L1 | 19001 | Profile | ✅ | spec.md |
+| **beacon** | 🔥 智库 | L1 | 19003 | Profile | ✅ | spec.md |
 | **shuaishuai** | 🌟 生活助理 | L2 | 19002 | 极简 | ✅ | SUMMARY-shuaishuai-l2.md |
 
 ---
@@ -134,6 +136,7 @@ docs/
 |------|------|------|--------|
 | 2026-02-27 | v1.0 | 初始版本 (shuaishuai 部署完成) | 6 |
 | 2026-02-27 | v2.0 | 优化结构，新增极简模式 | 7 |
+| 2026-03-03 | v3.0 | Beacon 上线，部署脚本 v2.0，浏览器隔离 | 7 |
 
 ---
 
@@ -145,7 +148,7 @@ docs/
 
 | 文档 | 路径 | 字数 | 用途 | 状态 |
 |------|------|------|------|------|
-| **spec.md** | `spec.md` | ~7K | 架构主文档 | ✅ v9 |
+| **spec.md** | `spec.md` | ~8K | 架构主文档 | ✅ v11 |
 | **sop-minimal-setup.md** | `sop-minimal-setup.md` | ~5K | ⭐ 极简配置 SOP | ✅ v1.0 |
 | **QUICKSTART-L2.md** | `QUICKSTART-L2.md` | ~8K | ⭐ 快速部署指南 | ✅ v2.0 |
 | **sop-l2-agent-deployment.md** | `sop-l2-agent-deployment.md` | ~9K | 完整部署 SOP | ✅ v1.0 |
@@ -251,10 +254,11 @@ openclaw pairing list
 
 | 优先级 | 行动 | 说明 |
 |-------|------|------|
-| P1 | 测试 shuaishuai 其他能力 | 搜索/浏览器/模型切换 |
-| P2 | 规划下一个 Agent | wifey / researcher |
-| P3 | 自动化部署脚本 | 缩短到 60 min |
-| P4 | 跨 Agent 通信 | Telegram 互发方案 |
+| P2 | 跨 Agent 通信 | Telegram 互发方案 |
+| P2 | support Agent | L1 Profile 售后服务 |
+| P3 | wifey Agent | L2 夫人助理 |
+| ✅ | ~~部署脚本 v2.0~~ | 2026-03-03 完成，L1/L2 均已对齐实际配置 |
+| ✅ | ~~Beacon 智库 Agent~~ | 2026-03-03 上线 (合并 researcher + analyst) |
 
 ---
 
