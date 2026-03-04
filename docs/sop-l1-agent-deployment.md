@@ -129,6 +129,8 @@ cat > ~/Library/LaunchAgents/ai.openclaw.gateway.${AGENT}.plist << PLIST
 		<string>$(echo $HOME)</string>
 		<key>PATH</key>
 		<string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+		<key>OPENCLAW_STATE_DIR</key>
+		<string>$(echo $HOME)/.openclaw-${AGENT}</string>
 	</dict>
 	<key>KeepAlive</key>
 	<true/>
