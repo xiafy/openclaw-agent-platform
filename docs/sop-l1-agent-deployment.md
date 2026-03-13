@@ -227,4 +227,4 @@ rm -rf ~/.openclaw/workspace-${AGENT}
 |-------|------|----------------|----------|----------|
 | claw | 18789 | openclaw | 18800 | - |
 | sage | 19001 | sage-browser | 18801 | 2026-02-25 |
-| beacon | 19003 | beacon-browser | 18802 | 2026-03-03 |
+| beacon | 19010 | beacon-browser | 18802 | 2026-03-03 |
